@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AuraCart - Arya-Inspired Test</title>
+    <style>
+      :root {
+        --bg: #070711;
+        --ink: #fff7d6;
+        --muted: rgba(255, 247, 214, 0.68);
+        --pink: #ff3d8a;
+        --cyan: #27e7ff;
+        --gold: #ffd23f;
+        --line: rgba(255, 247, 214, 0.18);
+        --font: "Arial Narrow", "Aptos", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { color-scheme: dark; }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background:
+          linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+          radial-gradient(circle at 50% 20%, rgba(255,61,138,0.28), transparent 28rem),
+          var(--bg);
+        background-size: 42px 42px, 42px 42px, auto, auto;
+        color: var(--ink);
+        overflow-x: clip;
+      }
+
+      .page { width: min(1180px, calc(100% - 28px)); margin: 0 auto; }
+      .nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); }
+      .brand { font-weight: 900; color: var(--gold); text-transform: uppercase; letter-spacing: 0.16em; }
+      .nav span { color: var(--muted); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; }
+      .hero { position: relative; min-height: calc(100dvh - 76px); display: grid; align-items: center; padding: 56px 0; }
+      .stamp { color: var(--cyan); letter-spacing: 0.3em; text-transform: uppercase; font-size: 12px; }
+      h1 { margin: 18px 0; font-size: clamp(54px, 12vw, 150px); line-height: 0.82; letter-spacing: -0.04em; text-transform: uppercase; max-width: 9ch; text-shadow: 3px 0 var(--pink), -3px 0 var(--cyan); }
+      .copy { max-width: 500px; color: var(--muted); font-size: 19px; line-height: 1.55; }
+      .cta { display: inline-flex; margin-top: 28px; padding: 16px 22px; color: #080611; background: var(--gold); border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--pink); text-decoration: none; text-transform: uppercase; font-weight: 900; letter-spacing: 0.08em; }
+
+      .terminal {
+        position: absolute;
+        right: 0;
+        bottom: 9vh;
+        width: min(560px, 52vw);
+        border: 2px solid var(--cyan);
+        background: rgba(7, 7, 17, 0.86);
+        box-shadow: 0 0 40px rgba(39,231,255,0.22), 14px 14px 0 rgba(255,61,138,0.44);
+        transform: rotate(-2deg);
+      }
+      .terminal header { display: flex; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--cyan); color: var(--cyan); font-size: 12px; letter-spacing: 0.16em; }
+      .rows { padding: 16px; }
+      .row { display: grid; grid-template-columns: 1fr auto; gap: 18px; padding: 13px 0; border-bottom: 1px dashed var(--line); }
+      .row strong { color: var(--gold); }
+      .sun {
+        position: absolute;
+        width: 340px;
+        aspect-ratio: 1;
+        right: 18%;
+        top: 12%;
+        border-radius: 50%;
+        background: repeating-linear-gradient(to bottom, var(--gold) 0 12px, transparent 12px 22px), linear-gradient(var(--gold), var(--pink));
+        opacity: 0.9;
+        z-index: -1;
+      }
+      section { padding: 70px 0; border-top: 2px solid var(--line); }
+      h2 { margin: 0 0 28px; font-size: clamp(38px, 7vw, 92px); line-height: 0.9; text-transform: uppercase; color: var(--gold); }
+      .tiles { display: grid; grid-template-columns: 1.4fr 0.8fr 1fr; gap: 14px; }
+      .tile { min-height: 230px; border: 2px solid var(--line); padding: 18px; background: rgba(255,255,255,0.04); }
+      .tile:nth-child(2) { transform: translateY(34px); border-color: var(--pink); }
+      .tile:nth-child(3) { border-color: var(--cyan); }
+
+      @media (max-width: 820px) {
+        .hero { min-height: auto; }
+        h1 { max-width: 100%; font-size: clamp(52px, 18vw, 86px); }
+        .terminal { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 38px; transform: none; }
+        .sun { width: 220px; right: 0; top: 90px; }
+        .tiles { grid-template-columns: 1fr; }
+        .tile:nth-child(2) { transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="nav"><div class="brand">AuraCart</div><span>Retail terminal / 1985</span></nav>
+      <main>
+        <section class="hero">
+          <div class="sun" aria-hidden="true"></div>
+          <div>
+            <div class="stamp">Chrome cart intelligence</div>
+            <h1>Upsell signal online</h1>
+            <p class="copy">A neon retail console for stores that want every cart to reveal the next best bundle.</p>
+            <a class="cta" href="#">Book demo</a>
+          </div>
+          <aside class="terminal">
+            <header><span>CART FEED</span><span>LIVE</span></header>
+            <div class="rows">
+              <div class="row"><span>Serum detected</span><strong>+ cleanser</strong></div>
+              <div class="row"><span>Threshold distance</span><strong>$18</strong></div>
+              <div class="row"><span>Bundle pressure</span><strong>72%</strong></div>
+              <div class="row"><span>Margin guard</span><strong>clear</strong></div>
+            </div>
+          </aside>
+        </section>
+        <section>
+          <h2>Retail signals with campaign energy.</h2>
+          <div class="tiles">
+            <article class="tile"><h3>Cart as console</h3><p class="copy">Every shopper action becomes a visible buying signal.</p></article>
+            <article class="tile"><h3>Offer as beam</h3><p class="copy">One recommendation cuts through the checkout moment.</p></article>
+            <article class="tile"><h3>Proof as pulse</h3><p class="copy">AOV movement appears as a live campaign readout.</p></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
