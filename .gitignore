@@ -6,4 +6,5 @@ dist/
 build/
 .next/
 coverage/
+screenshots/
 *.log
