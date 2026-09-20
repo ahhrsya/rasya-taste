@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rasya Taste - Style Gallery</title>
+  <style>
+    :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #171717; background: #f4f3ef; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { max-width: 1200px; margin: 0 auto; padding: 58px 24px 30px; display: flex; justify-content: space-between; gap: 24px; align-items: end; }
+    h1 { max-width: 720px; margin: 0; font-size: clamp(2.5rem, 6vw, 6.8rem); line-height: .88; letter-spacing: -.07em; }
+    header p { max-width: 330px; margin: 0; color: #6e6e69; line-height: 1.5; }
+    main { max-width: 1200px; margin: 0 auto; padding: 0 24px 72px; display: grid; gap: 18px; }
+    .style { min-height: 520px; position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,.14); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; }
+    .label { display: flex; justify-content: space-between; font: 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; letter-spacing: .14em; opacity: .72; }
+    .style h2 { max-width: 710px; font-size: clamp(2.4rem, 6vw, 7.8rem); line-height: .87; letter-spacing: -.075em; margin: 0; }
+    .style p { max-width: 430px; line-height: 1.45; }
+    .cta { display: inline-flex; width: fit-content; padding: 12px 17px; border: 1px solid currentColor; font-weight: 700; text-decoration: none; color: inherit; }
+    .notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; font-size: 12px; line-height: 1.35; }
+    .notes span { border-top: 1px solid currentColor; padding-top: 8px; opacity: .72; }
+    .conversion { background: #f9f9f7; color: #181818; }
+    .conversion .visual { position: absolute; right: 6%; top: 18%; width: 40%; height: 53%; background: #e7ff52; border: 2px solid #181818; box-shadow: 13px 13px 0 #181818; padding: 20px; transform: rotate(2deg); }
+    .conversion .chart { height: 68%; border-bottom: 3px solid #181818; background: linear-gradient(160deg, transparent 60%, #181818 61% 63%, transparent 64%); }
+    .conversion .big { font-size: 36px; font-weight: 800; }
+    .premium { background: #0e0f11; color: #f0ede7; }
+    .premium .object { position: absolute; right: 10%; top: 12%; width: 32%; aspect-ratio: 1 / 1.18; background: radial-gradient(circle at 38% 30%, #f4fbff 0 5%, #97a9b5 7% 18%, #1b2a32 40%, #030405 70%); border-radius: 48% 43% 20% 20%; box-shadow: 0 0 90px rgba(160,208,255,.28); transform: rotate(8deg); }
+    .premium h2 { font-family: Georgia, serif; font-weight: 400; }
+    .technical { background: #111417; color: #e7edf0; }
+    .technical .terminal { position: absolute; right: 5%; top: 13%; width: 44%; border: 1px solid #50616b; background: #182025; padding: 18px; font: 12px/1.8 ui-monospace, monospace; box-shadow: 16px 16px 0 #0a0c0e; }
+    .technical .green { color: #8cf5b0; }
+    .technical .blue { color: #83c9ff; }
+    .warm { background: #f7eee3; color: #3a2e2a; }
+    .warm .tape { position: absolute; right: 10%; top: 18%; width: 34%; height: 220px; background: #f5b2c7; transform: rotate(7deg); box-shadow: 22px 20px 0 #d8e58c; padding: 22px; }
+    .warm .tape:after { content: "Today / 08:42"; display: block; margin-top: 46px; font: 20px Georgia, serif; }
+    .service { background: #e7f0ed; color: #183f3a; }
+    .service .wayfinding { position: absolute; right: 9%; top: 17%; width: 34%; height: 250px; border-left: 18px solid #ee7b44; border-bottom: 18px solid #ee7b44; padding: 32px; font-size: 42px; line-height: .9; font-weight: 800; }
+    .editorial { background: #e9e2d7; color: #24221f; }
+    .editorial .plate { position: absolute; right: 8%; top: 11%; width: 36%; height: 59%; background: #24221f; color: #e9e2d7; padding: 22px; display: flex; align-items: end; font: 18px/1.1 Georgia, serif; transform: rotate(-4deg); }
+    .editorial h2 { font-family: Georgia, serif; font-weight: 400; }
+    @media (max-width: 760px) {
+      header { display: block; padding-top: 34px; }
+      header p { margin-top: 24px; }
+      .style { min-height: 650px; padding: 22px; }
+      .style h2 { max-width: 90%; font-size: clamp(2.9rem, 15vw, 5.8rem); }
+      .visual, .object, .terminal, .tape, .wayfinding, .plate { opacity: .42; right: -12% !important; width: 68% !important; }
+      .notes { grid-template-columns: 1fr; margin-top: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div style="font: 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 22px;">Rasya Taste / Style Gallery</div>
+      <h1>Six visual directions. One decision system.</h1>
+    </div>
+    <p>These are directional previews, not finished production pages. Each style changes the source, hierarchy, asset treatment, and motion language.</p>
+  </header>
+  <main>
+    <section class="style conversion">
+      <div class="label"><span>01 / Conversion</span><span>Outcome first</span></div>
+      <div><h2>Turn more visits into useful action.</h2><p>For ecommerce SaaS, growth tools, Shopify apps, and offer-led pages. The product proof arrives before the explanation.</p><a class="cta" href="#">See the workflow</a></div>
+      <div class="visual"><div class="big">+28.4%</div><div class="chart"></div><small>Revenue lift / last 30 days</small></div>
+      <div class="notes"><span>Source: direct-response product page</span><span>Motion: proof and state transitions</span><span>Risk: can feel too optimized</span></div>
+    </section>
+    <section class="style premium">
+      <div class="label"><span>02 / Premium Commerce</span><span>Object first</span></div>
+      <div><h2>Make the object impossible to ignore.</h2><p>For fashion, beauty, food, wellness, home, and DTC products where material, silhouette, and variants sell the experience.</p><a class="cta" href="#">Explore the object</a></div>
+      <div class="object"></div>
+      <div class="notes"><span>Source: cold luxury product shoot</span><span>Motion: reveal, texture, detail zoom</span><span>Risk: beauty can bury the buy path</span></div>
+    </section>
+    <section class="style technical">
+      <div class="label"><span>03 / Technical SaaS</span><span>Workflow first</span></div>
+      <div><h2>Show the system thinking.</h2><p>For developer tools, AI products, infrastructure, automation, analytics, and products with a process worth understanding.</p><a class="cta" href="#">Open the workflow</a></div>
+      <div class="terminal"><span class="green">$ rasya deploy --preview</span><br /><span class="blue">→ compiling workflow graph</span><br />→ 42 checks passed<br /><span class="green">✓ preview ready in 18s</span></div>
+      <div class="notes"><span>Source: terminal, lab notebook, manual</span><span>Motion: pinned workflow progression</span><span>Risk: fake technical theater</span></div>
+    </section>
+    <section class="style warm">
+      <div class="label"><span>04 / Warm SaaS</span><span>Human momentum</span></div>
+      <div><h2>Make progress feel good.</h2><p>For productivity, collaboration, consumer SaaS, and approachable B2B where the product should feel useful before it feels impressive.</p><a class="cta" href="#">Start a small win</a></div>
+      <div class="tape"><strong>Team ritual</strong><br />3 tasks are moving today.</div>
+      <div class="notes"><span>Source: desk planner, onboarding flow</span><span>Motion: gentle physics and feedback</span><span>Risk: too playful for serious work</span></div>
+    </section>
+    <section class="style service">
+      <div class="label"><span>05 / Service</span><span>Trust first</span></div>
+      <div><h2>Clarity is part of the care.</h2><p>For healthcare, clinics, consultants, education, local services, and any offer where confidence and contact path matter more than spectacle.</p><a class="cta" href="#">Book a conversation</a></div>
+      <div class="wayfinding">START<br />HERE</div>
+      <div class="notes"><span>Source: calm wayfinding system</span><span>Motion: reveal, parallax, form feedback</span><span>Risk: blandness without a point of view</span></div>
+    </section>
+    <section class="style editorial">
+      <div class="label"><span>06 / Editorial Brand</span><span>Point of view first</span></div>
+      <div><h2>Give the idea a proper masthead.</h2><p>For portfolios, agencies, personal brands, campaign launches, and products with a strong visual or cultural position.</p><a class="cta" href="#">Read the index</a></div>
+      <div class="plate">Issue 07<br />A considered point of view is still a useful interface.</div>
+      <div class="notes"><span>Source: monograph, magazine, catalog</span><span>Motion: type reveal and index movement</span><span>Risk: sophistication without clarity</span></div>
+    </section>
+  </main>
+</body>
+</html>
