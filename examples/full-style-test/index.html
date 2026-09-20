@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AuraCart - Full Style Test</title>
+  <style>
+    :root {
+      --bg: #161719;
+      --surface: #202226;
+      --surface-2: #2a2d32;
+      --ink: #f4f1e8;
+      --muted: #a9aaad;
+      --accent: #b8ff4c;
+      --accent-2: #ff5d42;
+      --line: rgba(244,241,232,.2);
+      --display: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      --body: Georgia, "Times New Roman", serif;
+      --mono: "Courier New", monospace;
+      --radius: 0px;
+      --shadow: 0 18px 50px rgba(0,0,0,.22);
+      --texture: none;
+      --hero-align: left;
+    }
+    * { box-sizing: border-box; }
+    html { color-scheme: dark; scroll-behavior: smooth; }
+    body { margin: 0; overflow-x: clip; background: var(--bg); color: var(--ink); font-family: var(--body); background-image: var(--texture); }
+    a { color: inherit; }
+    .shell { width: min(1220px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); font: 11px/1.2 var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+    .brand { color: var(--accent); font-weight: 900; }
+    .topbar nav { display: flex; gap: 18px; color: var(--muted); }
+    .topbar nav a { text-decoration: none; }
+    .style-switcher { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; background: color-mix(in srgb, var(--bg) 91%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); font: 10px var(--mono); white-space: nowrap; }
+    .style-switcher a { padding: 7px 9px; border: 1px solid var(--line); text-decoration: none; color: var(--muted); border-radius: var(--radius); }
+    .style-switcher a.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+    .eyebrow { color: var(--accent); font: 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .hero { min-height: 700px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .88fr); gap: clamp(40px, 8vw, 120px); align-items: center; padding: 90px 0 110px; position: relative; }
+    .hero-copy { position: relative; z-index: 1; min-width: 0; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 780px; margin: 17px 0 25px; font: 400 clamp(4rem, 10vw, 9.5rem)/.83 var(--display); letter-spacing: -.06em; text-transform: uppercase; overflow-wrap: anywhere; }
+    .lede { max-width: 510px; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.5; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 16px; background: var(--accent); color: var(--bg); border: 1px solid var(--accent); border-radius: var(--radius); text-decoration: none; font: 800 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; box-shadow: var(--shadow); }
+    .button.ghost { background: transparent; color: var(--ink); border-color: var(--line); box-shadow: none; }
+    .hero-art { min-height: 450px; position: relative; display: grid; place-items: center; }
+    .artifact { width: min(100%, 480px); min-height: 390px; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); transform: rotate(2deg); }
+    .artifact-head { display: flex; justify-content: space-between; padding-bottom: 13px; border-bottom: 1px solid var(--line); color: var(--accent); font: 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .signal { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 17px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+    .signal strong { color: var(--accent); font-family: var(--mono); }
+    .artifact-total { margin-top: 34px; display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+    .artifact-total strong { color: var(--accent); font: 700 clamp(3rem, 8vw, 6rem)/.8 var(--display); }
+    .proof { border-block: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .proof div { padding: 22px 18px; border-right: 1px solid var(--line); }
+    .proof div:last-child { border-right: 0; }
+    .proof strong { display: block; font: 700 2rem var(--display); color: var(--accent); }
+    .proof span { color: var(--muted); font: 11px var(--mono); text-transform: uppercase; }
+    section.content { padding: 120px 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .7fr 1.3fr; gap: 40px; margin-bottom: 55px; }
+    .section-head h2 { max-width: 730px; margin: 0; font: 400 clamp(3rem, 7vw, 7rem)/.88 var(--display); letter-spacing: -.06em; text-transform: uppercase; }
+    .section-head p { max-width: 430px; color: var(--muted); line-height: 1.6; font-size: 1.05rem; }
+    .problem { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .problem-card { min-height: 270px; padding: 25px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); }
+    .problem-card span { color: var(--accent); font: 12px var(--mono); }
+    .problem-card h3 { margin: 58px 0 12px; font: 400 2.1rem/.95 var(--display); text-transform: uppercase; }
+    .problem-card p { max-width: 360px; color: var(--muted); line-height: 1.55; }
+    .capabilities { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .capability { min-height: 250px; padding: 19px; border-top: 2px solid var(--accent); background: var(--surface); }
+    .capability:nth-child(2) { margin-top: 42px; }
+    .capability:nth-child(3) { margin-top: 84px; }
+    .capability:nth-child(4) { margin-top: 126px; }
+    .capability h3 { margin: 45px 0 14px; font: 400 1.7rem/.95 var(--display); text-transform: uppercase; }
+    .capability p { color: var(--muted); line-height: 1.5; }
+    .workflow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); }
+    .step { min-height: 330px; padding: 25px; border-right: 1px solid var(--line); position: relative; }
+    .step:last-child { border-right: 0; }
+    .step-number { color: var(--accent); font: 12px var(--mono); }
+    .step h3 { margin: 100px 0 14px; font: 400 2.1rem/.9 var(--display); text-transform: uppercase; }
+    .step p { color: var(--muted); line-height: 1.5; }
+    .integrations { display: flex; flex-wrap: wrap; gap: 10px; }
+    .integration { padding: 18px 21px; border: 1px solid var(--line); background: var(--surface); font: 13px var(--mono); }
+    .pricing { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: stretch; }
+    .plan { padding: 25px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); }
+    .plan.recommended { background: var(--accent); color: var(--bg); transform: translateY(-15px); box-shadow: var(--shadow); }
+    .plan small { font: 11px var(--mono); text-transform: uppercase; }
+    .plan h3 { margin: 60px 0 10px; font: 400 2.3rem var(--display); text-transform: uppercase; }
+    .price { margin-bottom: 25px; font: 400 3.4rem var(--display); }
+    .plan p, .plan li { color: var(--muted); line-height: 1.5; }
+    .recommended p, .recommended li { color: color-mix(in srgb, var(--bg) 65%, transparent); }
+    .plan ul { padding-left: 18px; }
+    .faq { max-width: 850px; }
+    details { border-top: 1px solid var(--line); padding: 20px 0; }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font: 400 1.4rem var(--display); text-transform: uppercase; }
+    details p { max-width: 650px; margin: 16px 0 0; color: var(--muted); line-height: 1.55; }
+    .final-cta { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; padding: 110px 0; }
+    .final-cta h2 { max-width: 820px; margin: 0; font: 400 clamp(3.5rem, 8vw, 8rem)/.82 var(--display); letter-spacing: -.06em; text-transform: uppercase; }
+    footer { padding: 24px 0 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font: 11px var(--mono); text-transform: uppercase; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* Rasya worlds */
+    [data-style="conversion"] { --bg: #f5f5f1; --surface: #fff; --surface-2: #eef0e7; --ink: #171817; --muted: #666a62; --accent: #dfff38; --accent-2: #141414; --line: rgba(23,24,23,.18); --display: "Arial Narrow", Impact, sans-serif; --body: Georgia, serif; --mono: "Courier New", monospace; --radius: 0px; --shadow: 8px 8px 0 #171817; --texture: linear-gradient(90deg, rgba(0,0,0,.025) 1px, transparent 1px); }
+    [data-style="premium-commerce"] { --bg: #0c0d0f; --surface: #17191c; --ink: #f1efe8; --muted: #a8aaa7; --accent: #a8ddff; --accent-2: #ff8c4a; --line: rgba(241,239,232,.18); --display: Georgia, serif; --body: "Trebuchet MS", sans-serif; --radius: 14px; --shadow: 0 25px 70px rgba(0,0,0,.35); --texture: radial-gradient(circle at 76% 12%, rgba(168,221,255,.16), transparent 28rem); }
+    [data-style="technical-saas"] { --bg: #111719; --surface: #172024; --ink: #e5f0ee; --muted: #90a6a5; --accent: #67e8ad; --accent-2: #7cb9ff; --line: rgba(229,240,238,.2); --display: "Arial Narrow", sans-serif; --body: "Trebuchet MS", sans-serif; --mono: "Courier New", monospace; --radius: 4px; --shadow: 12px 12px 0 rgba(0,0,0,.35); --texture: linear-gradient(rgba(103,232,173,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(103,232,173,.04) 1px, transparent 1px); }
+    [data-style="warm-saas"] { --bg: #f5ede3; --surface: #fff9f0; --ink: #3f2e29; --muted: #806e67; --accent: #ee92b3; --accent-2: #a8c96d; --line: rgba(63,46,41,.2); --display: "Trebuchet MS", sans-serif; --body: Georgia, serif; --radius: 18px; --shadow: 9px 10px 0 #c6d58d; }
+    [data-style="service"] { --bg: #e8f1ed; --surface: #f5faf7; --ink: #173c37; --muted: #5b7771; --accent: #ec7444; --accent-2: #95c9bd; --line: rgba(23,60,55,.2); --display: "Trebuchet MS", sans-serif; --body: Georgia, serif; --radius: 3px; --shadow: 0 18px 45px rgba(23,60,55,.12); }
+    [data-style="editorial-brand"] { --bg: #e8e0d5; --surface: #f4eee5; --ink: #28231f; --muted: #716860; --accent: #d9462e; --accent-2: #253b75; --line: rgba(40,35,31,.22); --display: Georgia, serif; --body: Georgia, serif; --mono: "Courier New", monospace; --radius: 0px; --shadow: 10px 10px 0 #253b75; }
+
+    /* Arya worlds */
+    [data-style="retro-futurism"] { --bg: #0a0a18; --surface: #15152b; --ink: #fff0b7; --muted: #b4a8a5; --accent: #ff4f9a; --accent-2: #2be7ff; --line: rgba(255,240,183,.25); --display: Impact, sans-serif; --body: "Trebuchet MS", sans-serif; --mono: "Courier New", monospace; --shadow: 8px 8px 0 var(--accent-2); --texture: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); }
+    [data-style="brutalism"] { --bg: #f0efe9; --surface: #fff; --ink: #111; --muted: #4d4d4a; --accent: #ff4b22; --accent-2: #0047ff; --line: #111; --display: Impact, sans-serif; --body: "Courier New", monospace; --radius: 0px; --shadow: 11px 11px 0 #111; }
+    [data-style="editorial"] { --bg: #e6dfd2; --surface: #f6f1e8; --ink: #22211e; --muted: #706b64; --accent: #b52c1e; --accent-2: #213b70; --line: rgba(34,33,30,.25); --display: Georgia, serif; --body: Georgia, serif; --mono: "Courier New", monospace; --shadow: 10px 10px 0 #213b70; }
+    [data-style="glassmorphism"] { --bg: #121c29; --surface: rgba(255,255,255,.12); --ink: #eef8ff; --muted: #a9baca; --accent: #a8f6ff; --accent-2: #ff93dd; --line: rgba(255,255,255,.24); --display: "Trebuchet MS", sans-serif; --body: "Trebuchet MS", sans-serif; --radius: 22px; --shadow: 0 20px 70px rgba(0,0,0,.25); --texture: radial-gradient(circle at 15% 20%, rgba(168,246,255,.28), transparent 22rem), radial-gradient(circle at 85% 40%, rgba(255,147,221,.2), transparent 25rem); }
+    [data-style="bento"] { --bg: #e9ebdf; --surface: #f7f8f0; --ink: #20251c; --muted: #65705c; --accent: #a6dc46; --accent-2: #f17a54; --line: rgba(32,37,28,.2); --display: "Trebuchet MS", sans-serif; --body: "Trebuchet MS", sans-serif; --radius: 20px; --shadow: 5px 6px 0 rgba(32,37,28,.16); }
+    [data-style="neo-minimal"] { --bg: #f4f4f0; --surface: #fff; --ink: #191919; --muted: #727272; --accent: #191919; --accent-2: #c7ff39; --line: rgba(25,25,25,.15); --display: "Trebuchet MS", sans-serif; --body: Georgia, serif; --radius: 8px; --shadow: 0 14px 40px rgba(0,0,0,.08); }
+    [data-style="claymorphism"] { --bg: #e5d8cf; --surface: #f2e8df; --ink: #4b3731; --muted: #897068; --accent: #ef9d83; --accent-2: #9ed2b1; --line: rgba(75,55,49,.13); --display: "Trebuchet MS", sans-serif; --body: "Trebuchet MS", sans-serif; --radius: 28px; --shadow: 14px 16px 28px rgba(93,61,48,.17), -10px -10px 23px rgba(255,255,255,.55); }
+    [data-style="y2k-vaporwave"] { --bg: #16082d; --surface: #28104b; --ink: #fff1ff; --muted: #d4bde8; --accent: #ff72ed; --accent-2: #73f8ff; --line: rgba(255,241,255,.25); --display: Impact, sans-serif; --body: "Trebuchet MS", sans-serif; --mono: "Courier New", monospace; --shadow: 8px 8px 0 var(--accent-2); --texture: linear-gradient(135deg, rgba(255,114,237,.12), transparent 45%), linear-gradient(rgba(115,248,255,.04) 1px, transparent 1px); }
+    [data-style="swiss"] { --bg: #f0f0ed; --surface: #fff; --ink: #121212; --muted: #585858; --accent: #e6332a; --accent-2: #0050a4; --line: rgba(18,18,18,.2); --display: Helvetica, Arial, sans-serif; --body: Helvetica, Arial, sans-serif; --radius: 0px; --shadow: none; }
+    [data-style="organic"] { --bg: #dfe8d3; --surface: #f4f1e6; --ink: #294133; --muted: #647262; --accent: #d66e43; --accent-2: #8da85c; --line: rgba(41,65,51,.2); --display: Georgia, serif; --body: Georgia, serif; --radius: 45% 12% 38% 15%; --shadow: 0 20px 40px rgba(41,65,51,.15); --texture: radial-gradient(circle at 20% 20%, rgba(214,110,67,.13), transparent 20rem); }
+    [data-style="art-deco"] { --bg: #17100c; --surface: #241913; --ink: #f4dfae; --muted: #b9a57b; --accent: #d9aa45; --accent-2: #a83c2e; --line: rgba(244,223,174,.25); --display: Georgia, serif; --body: Georgia, serif; --radius: 0px; --shadow: 0 0 0 1px var(--accent); --texture: repeating-linear-gradient(45deg, rgba(217,170,69,.05) 0 1px, transparent 1px 12px); }
+    [data-style="cyberpunk"] { --bg: #0b0d10; --surface: #161b20; --ink: #e8fff3; --muted: #88a19a; --accent: #c8ff00; --accent-2: #ff2b79; --line: rgba(232,255,243,.22); --display: Impact, sans-serif; --body: "Courier New", monospace; --radius: 0px; --shadow: 8px 8px 0 var(--accent-2); --texture: linear-gradient(110deg, rgba(200,255,0,.08), transparent 28%), repeating-linear-gradient(0deg, transparent 0 4px, rgba(255,255,255,.025) 5px); }
+
+    [data-style="glassmorphism"] .artifact, [data-style="glassmorphism"] .problem-card, [data-style="glassmorphism"] .capability, [data-style="glassmorphism"] .plan, [data-style="glassmorphism"] .integration { backdrop-filter: blur(18px); }
+    [data-style="swiss"] h1, [data-style="swiss"] h2, [data-style="swiss"] h3 { letter-spacing: -.075em; }
+    [data-style="organic"] .artifact, [data-style="organic"] .problem-card, [data-style="organic"] .capability, [data-style="organic"] .plan { border-radius: var(--radius); }
+    [data-style="brutalism"] .hero, [data-style="brutalism"] section.content { border-bottom: 4px solid var(--line); }
+    [data-style="editorial"] .hero, [data-style="editorial-brand"] .hero { grid-template-columns: .72fr 1.28fr; }
+    [data-style="editorial"] h1, [data-style="editorial-brand"] h1 { text-transform: none; }
+    [data-style="bento"] .capability:nth-child(2), [data-style="bento"] .capability:nth-child(3), [data-style="bento"] .capability:nth-child(4) { margin-top: 0; }
+    [data-style="neo-minimal"] .hero { min-height: 620px; }
+    [data-style="neo-minimal"] .artifact { border-width: 2px; }
+    [data-style="y2k-vaporwave"] .artifact { transform: rotate(-4deg); }
+    [data-style="art-deco"] .artifact, [data-style="art-deco"] .problem-card, [data-style="art-deco"] .capability, [data-style="art-deco"] .plan { border-width: 1px; outline: 1px solid var(--accent); outline-offset: 6px; }
+
+    @media (max-width: 820px) {
+      .shell { width: min(100% - 28px, 650px); }
+      .topbar nav { display: none; }
+      .hero, .section-head, .final-cta { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding: 74px 0 80px; }
+      h1 { max-width: 9ch; font-size: clamp(3rem, 14vw, 6.8rem); letter-spacing: -.075em; overflow-wrap: anywhere; word-break: break-word; }
+      .hero-art { min-height: 360px; }
+      .proof { grid-template-columns: repeat(2, 1fr); }
+      .proof div:nth-child(2) { border-right: 0; }
+      .proof div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .section-head { gap: 18px; margin-bottom: 34px; }
+      section.content { padding: 78px 0; }
+      .problem, .workflow, .pricing, .capabilities { grid-template-columns: 1fr; }
+      .capability:nth-child(2), .capability:nth-child(3), .capability:nth-child(4) { margin-top: 0; }
+      .step { min-height: 240px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .step:last-child { border-bottom: 0; }
+      .step h3 { margin-top: 62px; }
+      .plan.recommended { transform: none; }
+      .final-cta { align-items: start; }
+      footer { display: block; line-height: 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body data-style="conversion">
+  <div class="shell">
+    <header class="topbar"><a class="brand" href="#top">AuraCart</a><nav><a href="#system">System</a><a href="#pricing">Plans</a><a href="#faq">FAQ</a></nav><span id="style-name">Conversion</span></header>
+    <nav class="style-switcher" aria-label="Style previews" id="style-switcher"></nav>
+
+    <main id="top">
+      <section class="hero reveal">
+        <div class="hero-copy"><div class="eyebrow" id="eyebrow">Rasya / conversion</div><h1 id="headline">Turn carts into larger orders.</h1><p class="lede">AuraCart reads intent, margin, and inventory to place the next useful offer in front of a shopper before checkout.</p><div class="actions"><a class="button" href="#pricing">Book a demo</a><a class="button ghost" href="#system">See the system</a></div></div>
+        <div class="hero-art"><div class="artifact" data-reveal><div class="artifact-head"><span>Cart feed / live</span><span>08:42:16</span></div><div class="signal"><span>Vitamin C Serum</span><strong>in cart</strong></div><div class="signal"><span>Intent signal</span><strong>reorder</strong></div><div class="signal"><span>Next best offer</span><strong>+ cleanser</strong></div><div class="signal"><span>Margin guard</span><strong>clear</strong></div><div class="artifact-total"><span>AOV lift target</span><strong>14.8%</strong></div></div></div>
+      </section>
+      <div class="proof reveal"><div><strong>14.8%</strong><span>lift target</span></div><div><strong>08 min</strong><span>setup path</span></div><div><strong>03</strong><span>offer modes</span></div><div><strong>24/7</strong><span>cart signals</span></div></div>
+
+      <section class="content reveal" id="system"><div class="section-head"><div class="eyebrow">01 / The problem</div><div><h2>Most upsells arrive without context.</h2><p>Shoppers do not need more noise. They need a recommendation that understands what is already in the cart, what can ship, and what keeps the brand promise intact.</p></div></div><div class="problem"><article class="problem-card"><span>Signal 01</span><h3>Generic offers feel like interruption.</h3><p>Replace blanket promotions with recommendations tied to the current buying moment.</p></article><article class="problem-card"><span>Signal 02</span><h3>Margin disappears in the rush.</h3><p>Protect the commercial logic with stock, margin, and campaign guardrails before the offer goes live.</p></article></div></section>
+
+      <section class="content reveal"><div class="section-head"><div class="eyebrow">02 / Capabilities</div><div><h2>One engine. Four buying signals.</h2><p>Use the same decision layer across cart, product, post-purchase, and campaign moments without rebuilding your storefront.</p></div></div><div class="capabilities"><article class="capability"><span class="eyebrow">A</span><h3>Cart intent</h3><p>Bundle products around what the shopper has already chosen.</p></article><article class="capability"><span class="eyebrow">B</span><h3>Margin guard</h3><p>Exclude products that are low-stock, low-profit, or off-campaign.</p></article><article class="capability"><span class="eyebrow">C</span><h3>Brand rules</h3><p>Keep suggestions inside routines, lines, and seasonal stories.</p></article><article class="capability"><span class="eyebrow">D</span><h3>Fast testing</h3><p>Compare copy, placement, and thresholds without a checkout rebuild.</p></article></div></section>
+
+      <section class="content reveal"><div class="section-head"><div class="eyebrow">03 / How it works</div><div><h2>From cart state to useful offer.</h2><p>A short path for the team that owns the storefront and the numbers behind it.</p></div></div><div class="workflow"><article class="step"><span class="step-number">01 / READ</span><h3>Read the cart</h3><p>Product affinity, reorder intent, threshold distance, and inventory become one context layer.</p></article><article class="step"><span class="step-number">02 / DECIDE</span><h3>Choose the offer</h3><p>The engine selects the strongest eligible offer for the moment and the margin.</p></article><article class="step"><span class="step-number">03 / LEARN</span><h3>Learn what moves</h3><p>Teams see which offer actually improves order value and which one creates friction.</p></article></div></section>
+
+      <section class="content reveal"><div class="section-head"><div class="eyebrow">04 / Integrations</div><div><h2>Fits into the stack you already run.</h2><p>Demo connectors for the test page. Replace with verified integrations and logos before production.</p></div></div><div class="integrations"><span class="integration">Shopify</span><span class="integration">Klaviyo</span><span class="integration">Postscript</span><span class="integration">Recharge</span><span class="integration">GA4</span><span class="integration">Segment</span></div></section>
+
+      <section class="content reveal" id="pricing"><div class="section-head"><div class="eyebrow">05 / Pricing</div><div><h2>Start with the volume you have.</h2><p>Illustrative pricing for the style test. Replace with real plan logic, billing terms, and legal copy before launch.</p></div></div><div class="pricing"><article class="plan"><small>Starter</small><h3>For the first signal.</h3><div class="price">$49</div><p>One storefront, core cart logic, and a focused test plan.</p><ul><li>Cart intent rules</li><li>Weekly reporting</li><li>Email support</li></ul></article><article class="plan recommended"><small>Growth / recommended</small><h3>For active operators.</h3><div class="price">$149</div><p>More offer modes and the controls to improve AOV without adding noise.</p><ul><li>Advanced guardrails</li><li>Experiment reporting</li><li>Priority support</li></ul></article><article class="plan"><small>Scale</small><h3>For many markets.</h3><div class="price">$399</div><p>Multi-market controls for teams managing several storefronts.</p><ul><li>Multiple catalogs</li><li>Custom rules</li><li>Dedicated review</li></ul></article></div></section>
+
+      <section class="content reveal" id="faq"><div class="section-head"><div class="eyebrow">06 / FAQ</div><div><h2>Questions before the first test.</h2><p>Keep the close useful. Clear answers are part of the conversion path.</p></div></div><div class="faq"><details open><summary>Does this replace our checkout?</summary><p>No. AuraCart is shown here as a decision layer that connects to an existing storefront and presents an eligible offer at the right moment.</p></details><details><summary>Can we protect margin and stock?</summary><p>Yes, the demo model includes margin and inventory rules. Production behavior depends on verified catalog and commerce integrations.</p></details><details><summary>How long does setup take?</summary><p>The eight-minute path is a fictional test-page claim. Replace it with an honest estimate after the real integration flow is measured.</p></details></div></section>
+
+      <section class="final-cta reveal"><h2>Make the next offer feel earned.</h2><a class="button" href="#top">Book a demo</a></section>
+    </main>
+    <footer><span>AuraCart / full style test</span><span id="footer-style">Conversion style / full landing</span><span>Fictional product / 2026</span></footer>
+  </div>
+  <script>
+    const styles = {
+      conversion: { family: 'Rasya', label: 'Conversion', source: 'direct-response product page', eyebrow: 'Rasya / conversion', headline: 'Turn carts into larger orders.' },
+      'premium-commerce': { family: 'Rasya', label: 'Premium Commerce', source: 'cold luxury product shoot', eyebrow: 'Rasya / premium commerce', headline: 'Make the object impossible to ignore.' },
+      'technical-saas': { family: 'Rasya', label: 'Technical SaaS', source: 'terminal, lab notebook, manual', eyebrow: 'Rasya / technical SaaS', headline: 'Show the system thinking.' },
+      'warm-saas': { family: 'Rasya', label: 'Warm SaaS', source: 'desk planner and onboarding flow', eyebrow: 'Rasya / warm SaaS', headline: 'Make progress feel good.' },
+      service: { family: 'Rasya', label: 'Service', source: 'calm wayfinding system', eyebrow: 'Rasya / service', headline: 'Clarity is part of the care.' },
+      'editorial-brand': { family: 'Rasya', label: 'Editorial Brand', source: 'monograph, magazine, catalog', eyebrow: 'Rasya / editorial brand', headline: 'Give the idea a proper masthead.' },
+      'retro-futurism': { family: 'Arya', label: 'Retro-Futurism', source: '1985 chrome-and-neon retail terminal', eyebrow: 'Arya / retro-futurism', headline: 'Upsell signal online.' },
+      brutalism: { family: 'Arya', label: 'Brutalism', source: 'municipal noticeboard and raw checkout receipt', eyebrow: 'Arya / brutalism', headline: 'Your cart has something to say.' },
+      editorial: { family: 'Arya', label: 'Editorial', source: '1980s independent retail magazine', eyebrow: 'Arya / editorial', headline: 'The next order, properly considered.' },
+      glassmorphism: { family: 'Arya', label: 'Glassmorphism', source: 'airport wayfinding seen through a glass kiosk', eyebrow: 'Arya / glassmorphism', headline: 'See the signal through the noise.' },
+      bento: { family: 'Arya', label: 'Bento', source: 'Japanese convenience-store shelf map', eyebrow: 'Arya / bento', headline: 'Every buying moment has a place.' },
+      'neo-minimal': { family: 'Arya', label: 'Neo-Minimal', source: '1960s Braun product manual', eyebrow: 'Arya / neo-minimal', headline: 'Less noise. Better orders.' },
+      claymorphism: { family: 'Arya', label: 'Claymorphism', source: 'soft molded point-of-sale display', eyebrow: 'Arya / claymorphism', headline: 'Make the useful thing feel touchable.' },
+      'y2k-vaporwave': { family: 'Arya', label: 'Y2K Vaporwave', source: '2001 ecommerce CD-ROM interface', eyebrow: 'Arya / Y2K vaporwave', headline: 'A better cart is loading.' },
+      swiss: { family: 'Arya', label: 'Swiss', source: 'Swiss rail timetable and 12-column grid', eyebrow: 'Arya / swiss', headline: 'Order value, arranged.' },
+      organic: { family: 'Arya', label: 'Organic', source: 'field guide and botanical packaging', eyebrow: 'Arya / organic', headline: 'Let the right offer grow.' },
+      'art-deco': { family: 'Arya', label: 'Art Deco', source: '1930s department-store elevator directory', eyebrow: 'Arya / art deco', headline: 'A richer route to the next order.' },
+      cyberpunk: { family: 'Arya', label: 'Cyberpunk', source: 'late-night market terminal in a rain-soaked city', eyebrow: 'Arya / cyberpunk', headline: 'The cart sees what comes next.' }
+    };
+    const params = new URLSearchParams(location.search);
+    const requested = params.get('style');
+    const active = styles[requested] ? requested : 'conversion';
+    document.body.dataset.style = active;
+    const meta = styles[active];
+    document.title = `AuraCart - ${meta.label} Full Landing`;
+    document.querySelector('#style-name').textContent = `${meta.family} / ${meta.label}`;
+    document.querySelector('#footer-style').textContent = `${meta.label} / source: ${meta.source}`;
+    document.querySelector('#eyebrow').textContent = meta.eyebrow;
+    document.querySelector('#headline').textContent = meta.headline;
+    const switcher = document.querySelector('#style-switcher');
+    Object.entries(styles).forEach(([key, value]) => {
+      const link = document.createElement('a');
+      link.href = `?style=${key}`;
+      link.textContent = `${value.family} / ${value.label}`;
+      link.className = key === active ? 'active' : '';
+      switcher.append(link);
+    });
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach((element, index) => { element.style.transitionDelay = `${Math.min(index * 45, 280)}ms`; observer.observe(element); });
+    } else document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+  </script>
+</body>
+</html>
